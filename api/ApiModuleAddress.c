@@ -13,10 +13,10 @@ int a_module(void) {
 }
 
 int __init ApiModuleAddress_init(void) {
-	printk("ApiModuleAddress module init ...\n");
-
 	struct module *ret; // 用于接收测试函数返回值
 	unsigned long addr = (unsigned long) a_module; // 得到内核符号a_module的地址
+
+	printk("ApiModuleAddress module init ...\n");
 
 	/* 调用 __module_address() 函数之前，必须禁止中断，以防止模块在执行操作期间被释放 */
 	preempt_disable(); // 禁止抢占
@@ -32,7 +32,7 @@ int __init ApiModuleAddress_init(void) {
 	#else
 		printk("ret->core_size: %d\n", ret->core_size);
 	#endif
-		printk("ret->name: %s\n", ret->name);
+		printk("refs of %s is %d\n", ret->name, module_refcount(ret));
 	} else {
 		printk(KERN_ERR "__module_address return NULL\n");
 	}

@@ -1,6 +1,10 @@
-obj-m:=ApiModuleAddress.o
+obj-m+=ApiModuleAddress.o
+obj-m+=ApiModuleTextAddress.o
+obj-m+=ApiPrintSymbol.o
+
 KERNELDIR:=/lib/modules/$(shell uname -r)/build
 PWD:=$(shell pwd)
+
 modules:
 	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
 modules_install:
