@@ -39,7 +39,7 @@ void mytimer_function(unsigned long arg) {
 	
 	rtc_time_to_tm(txc.time.tv_sec, &tm);
 
-	printk("%04d-%02d-%02d %02d:%02d:%02d: mytimer function (%lu)...\n", tm.tm_year+1900, tm.tm_mon, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec, arg);
+	printk("%04d-%02d-%02d %02d:%02d:%02d: mytimer function (%lu)...\n", tm.tm_year+1900, tm.tm_mon+1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec, arg);
 }
 
 static int __init hello_init(void) {
